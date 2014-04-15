@@ -1,0 +1,583 @@
+@prefix : <http://www.compose-project.eu/ns/web-of-things/trust#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.compose-project.eu/ns/web-of-things/trust> .
+
+<http://www.compose-project.eu/ns/web-of-things/trust> rdf:type owl:Ontology ;
+                                                       
+                                                       dc:rights "Apache License, Version 2.0, January 2004"^^xsd:string ;
+                                                       
+                                                       dc:creator "INNOVA S.p.A. ICT Group, Italy, Rome"^^xsd:string ;
+                                                       
+                                                       rdfs:comment "This ontology provides concepts related to the trust between two parties that wish to engage into mutual trusted relationships by exploring  trust capabilities and requirements."^^xsd:string ;
+                                                       
+                                                       rdfs:seeAlso "http://www.compose-project.eu/ns/web-of-things/"^^xsd:string ;
+                                                       
+                                                       dc:identifier "http://www.compose-project.eu/ns/web-of-things/trust"^^xsd:string ;
+                                                       
+                                                       owl:versionInfo "1.1.0" ;
+                                                       
+                                                       dc:title "COMPOSE Trust Ontology" ;
+                                                       
+                                                       dct:created "2013-10-22" ;
+                                                       
+                                                       dct:modified "2013-10-22" .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#forContext
+
+:forContext rdf:type owl:ObjectProperty ;
+            
+            rdfs:range :Context .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasAttribute
+
+:hasAttribute rdf:type owl:ObjectProperty ;
+              
+              rdfs:range :TrustAttribute .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasCriteria
+
+:hasCriteria rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasMetric
+
+:hasMetric rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasMetricValue
+
+:hasMetricValue rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasProfile
+
+:hasProfile rdf:type owl:ObjectProperty ;
+            
+            rdfs:domain :Agent ;
+            
+            rdfs:range :TrustProfile .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#isTrustProfileOf
+
+:isTrustProfileOf rdf:type owl:ObjectProperty ;
+                  
+                  owl:inverseOf :hasProfile .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#next
+
+:next rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#recommendedCriteria
+
+:recommendedCriteria rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#suggestedMatcher
+
+:suggestedMatcher rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:range :Matcher .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#trustedParticipant
+
+:trustedParticipant rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:range :Agent ;
+                    
+                    rdfs:domain :TrustRelationship .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#trustingParticipant
+
+:trustingParticipant rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:range :Agent ;
+                     
+                     rdfs:domain :TrustRelationship .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasImportance
+
+:hasImportance rdf:type owl:DatatypeProperty ;
+               
+               rdfs:comment "Importance or weigth."@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasMaxValue
+
+:hasMaxValue rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasMinValue
+
+:hasMinValue rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasName
+
+:hasName rdf:type owl:DatatypeProperty ;
+         
+         rdfs:comment "attaches to any instance" ;
+         
+         rdfs:range xsd:string .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasScore
+
+:hasScore rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasTimestamp
+
+:hasTimestamp rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasValue
+
+:hasValue rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#rank
+
+:rank rdf:type owl:DatatypeProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Agent
+
+:Agent rdf:type owl:Class ;
+       
+       rdfs:label "Agent"@en ;
+       
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasCriteria ;
+                         owl:someValuesFrom :TrustCriteria
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasProfile ;
+                         owl:someValuesFrom :TrustProfile
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasName ;
+                         owl:someValuesFrom xsd:string
+                       ] ;
+       
+       rdfs:comment "An agent is a entity who participates in a trust relationship. An agent can be any resource such as software agent, human, software service, etc. An agent engages in relationships with other agents to meet certian goals withing some context or domain, under belief (trust) that other agent will provide what claimed to provide. Therefore, an agent may have trust requerments as a precondition for engaging into a relationship with other agent. Each agent has a trust profile, which is a set of its characteristics (aspects, attributes) to meet trust requrments."@en ;
+       
+       rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Availability
+
+:Availability rdf:type owl:Class ;
+              
+              rdfs:subClassOf :QoSAttribute .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Context
+
+:Context rdf:type owl:Class ;
+         
+         rdfs:label "Context"@en ,
+                    <http://www.compose-project.eu/ns/web-of-things/trust> ;
+         
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :recommendedCriteria ;
+                           owl:someValuesFrom :TrustCriteria
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :suggestedMatcher ;
+                           owl:someValuesFrom :Matcher
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasName ;
+                           owl:someValuesFrom xsd:string
+                         ] ;
+         
+         rdfs:comment """A context within a trust relationship is being or to be established. E.g. public transport, tourism,  retail. For each context, there can be a recommended req trust profile(s) provided, in general, or agent can have req trust profile defined for the context.
+ The term context defines the nature of the service or service functions, and each Context has a name, a type and a functional specification, such as ‘rent a car’ or ‘buy a book’ Context Type can be matched to a Service Type."""@en ;
+         
+         rdfs:isDefinedBy "http://www.compose-project.eu/ns/web-of-things/trust" .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#ContractCompliance
+
+:ContractCompliance rdf:type owl:Class ;
+                    
+                    rdfs:label "ContractCompliance"@en ;
+                    
+                    rdfs:subClassOf :Reputation ;
+                    
+                    rdfs:comment "Contract Compliance can be a measure of compliance of actual behaviour of a service with respect to the service contract. This informatin may be comming out from COMPOSE Activity Monitors"@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Feedback
+
+:Feedback rdf:type owl:Class ;
+          
+          rdfs:subClassOf :Reputation ;
+          
+          rdfs:comment "Feedback from agents about other agents. E.g. user feedback about some particular service. Feedback can be in  a form of rating with predefined rating scale (e.g. poor, fair, good, very good, excellent)"@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Matcher
+
+:Matcher rdf:type owl:Class ;
+         
+         rdfs:label "Matcher"@en ;
+         
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasName ;
+                           owl:someValuesFrom xsd:string
+                         ] ;
+         
+         rdfs:comment "A matcher represents an matching technique or algorithm or strategy to compute the level of trust between two agents. The agents expose their trust profiles (capabilities) and impose their trust criteria (requirments), which are then used by a matcher to assess whether trustworthy relationship can be established or not. I.e., whether trust capabilities meet trust requirments. E.g., concrete matchers are Additive Weighting or TOPSIS."@en ;
+         
+         rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#MeasurableTrustAttribute
+
+:MeasurableTrustAttribute rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf :TrustAttribute ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasMinValue ;
+                                            owl:someValuesFrom rdf:PlainLiteral
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasValue ;
+                                            owl:someValuesFrom rdf:PlainLiteral
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasMetric ;
+                                            owl:someValuesFrom :Metric
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasMaxValue ;
+                                            owl:someValuesFrom rdf:PlainLiteral
+                                          ] .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Metric
+
+:Metric rdf:type owl:Class ;
+        
+        rdfs:label "Metric"@en ;
+        
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasMetricValue ;
+                          owl:someValuesFrom :MetricValue
+                        ] ;
+        
+        rdfs:isDefinedBy "http://www.compose-project.eu/ns/web-of-things/trust" ;
+        
+        rdfs:comment "A metric as a measurement for specific trust attribute"@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#MetricValue
+
+:MetricValue rdf:type owl:Class ;
+             
+             rdfs:label "MetricValue"@en ;
+             
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :next ;
+                               owl:someValuesFrom :MetricValue
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :rank ;
+                               owl:someValuesFrom xsd:int
+                             ] ;
+             
+             rdfs:comment "A list of values of metric, if applicable."@en ;
+             
+             rdfs:isDefinedBy "http://www.compose-project.eu/ns/web-of-things/trust" .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Popularity
+
+:Popularity rdf:type owl:Class ;
+            
+            rdfs:subClassOf :Reputation ;
+            
+            rdfs:comment """Popularity of an agent. It may be provided as simple as enumeration of two values - popular and no-popular - or as a numerical value e.g. any number between 0 and 1.
+(In COMPOSE,  provevance information can be used to calculate popularity)"""@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#QoSAttribute
+
+:QoSAttribute rdf:type owl:Class ;
+              
+              rdfs:subClassOf :MeasurableTrustAttribute ;
+              
+              rdfs:comment "Any attribute about quality of service."@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Reputation
+
+:Reputation rdf:type owl:Class ;
+            
+            rdfs:subClassOf :MeasurableTrustAttribute ;
+            
+            rdfs:comment "Reputation of an agent. It may be provided as simple as enumeration of predefined reputation values (unknown, bad, good, very good, excellent)  or as a numerical value e.g. any number between 0 and 1. "@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#ResponseTime
+
+:ResponseTime rdf:type owl:Class ;
+              
+              rdfs:subClassOf :QoSAttribute .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#SecurityAttribute
+
+:SecurityAttribute rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :UnmeasurableTrustAttribute ;
+                   
+                   rdfs:comment "Any attribute about security aspects. E.g. authentication, authorization, identification, etc."@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee
+
+:SecurityGuarantee rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :SecurityAttribute .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#SecurityRequirment
+
+:SecurityRequirment rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :SecurityAttribute .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#TrustAttribute
+
+:TrustAttribute rdf:type owl:Class ;
+                
+                rdfs:label "TrustAttribute"@en ;
+                
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasImportance ;
+                                  owl:someValuesFrom xsd:float
+                                ] ;
+                
+                rdfs:comment "Any parameter (feature, property, characteristics) that is relevant to a perception of trust. E..g. security-related features (authorization mechanism, authentication mechanism, data encryption), quality of service apects (reponse, data quality), reputation, etc."@en ;
+                
+                rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#TrustCriteria
+
+:TrustCriteria rdf:type owl:Class ;
+               
+               rdfs:label "TrustCriteria"@en ;
+               
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasAttribute ;
+                                 owl:someValuesFrom :TrustAttribute
+                               ] ;
+               
+               rdfs:isDefinedBy "http://www.compose-project.eu/ns/web-of-things/trust" ;
+               
+               rdfs:comment """Trust criteria is a set of requested trust attributes, with their values and preference. In other words, it is a triple <trust attribute/indicator, value, relevance>. 
+For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#TrustProfile
+
+:TrustProfile rdf:type owl:Class ;
+              
+              rdfs:label "TrustProfile"@en ;
+              
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasAttribute ;
+                                owl:someValuesFrom :TrustAttribute
+                              ] ;
+              
+              rdfs:comment "Trust prifile is a set of trust-related attributes of an agent, e.g. security attributes, reputation, QoS attributes, etc."@en ;
+              
+              rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#TrustRelationship
+
+:TrustRelationship rdf:type owl:Class ;
+                   
+                   rdfs:label "TrustRelationship"@en ;
+                   
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTimestamp ;
+                                     owl:someValuesFrom xsd:dateTimeStamp
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :trustingParticipant ;
+                                     owl:someValuesFrom :Agent
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :forContext ;
+                                     owl:someValuesFrom :Context
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasScore ;
+                                     owl:someValuesFrom xsd:float
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasCriteria ;
+                                     owl:someValuesFrom :TrustCriteria
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :trustedParticipant ;
+                                     owl:someValuesFrom :Agent
+                                   ] ;
+                   
+                   rdfs:comment "TrustRelationship represents trust relationship as a 6-tuple <Trusted Agent, Trusting Agent, Context, TrustCriteria, Score, Timestamp>. Each trust relationship is established between two agents who wants to engange in some form of communication or cooperation within a certian context (e.g. buying or seeling goods, geting some information, etc). An trusting agent trusts that trusted agent has certian characteristics (or features), which are defined as a trust criteria by the trusting agent. TrustRelationship has a level of trust, which can be numerical value within a range e.g. [0..1]."@en ;
+                   
+                   rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#UnmeasurableTrustAttribute
+
+:UnmeasurableTrustAttribute rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf :TrustAttribute ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :hasValue ;
+                                              owl:someValuesFrom rdf:PlainLiteral
+                                            ] .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale
+
+:ReputationScale rdf:type :Metric ,
+                          owl:NamedIndividual ;
+                 
+                 :hasMetricValue :high ,
+                                 :low ,
+                                 :medium .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#high
+
+:high rdf:type :MetricValue ,
+               owl:NamedIndividual ;
+      
+      :rank "3"^^xsd:int .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#low
+
+:low rdf:type :MetricValue ,
+              owl:NamedIndividual ;
+     
+     :rank "1"^^xsd:int ;
+     
+     :next :medium .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#medium
+
+:medium rdf:type :MetricValue ,
+                 owl:NamedIndividual ;
+        
+        :rank "2"^^xsd:int ;
+        
+        :next :high .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+

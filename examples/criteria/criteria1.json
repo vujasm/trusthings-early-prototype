@@ -1,0 +1,8 @@
+{
+"attributes": [ 
+{"type":[{"uri":"http://www.compose-project.eu/ns/web-of-things/trust#Reputation"}],"importance":1.0,"value":"http://www.compose-project.eu/ns/web-of-things/trust#high","minValue":null,"maxValue":null},
+{"type":[{"uri":"http://www.compose-project.eu/ns/web-of-things/trust#QoSAttribute"}],"importance":1.0,"value":"0.5","minValue":null,"maxValue":null},
+{"type":[{"uri":"http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee"}],"importance":1.0,"securityGoals":[{"uri":"http://www.linked-usdl.org/ns/usdl-sec#Confidentiality"}]},
+{"type":[{"uri":"http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee"}],"importance":1.0, "securityGoals":[{"uri":"http://www.linked-usdl.org/ns/usdl-sec#Authentication"}]}
+]
+}

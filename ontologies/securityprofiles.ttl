@@ -1,0 +1,748 @@
+@prefix : <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix usdl-sec: <http://www.linked-usdl.org/ns/usdl-sec#> .
+@base <http://www.compose-project.eu/ns/web-of-things/security/profiles> .
+
+<http://www.compose-project.eu/ns/web-of-things/security/profiles> rdf:type owl:Ontology ;
+                                                                   
+                                                                   dc:rights "Copyright...COMPOSE project.."^^xsd:string ;
+                                                                   
+                                                                   dc:creator "INNOVA S.p.A. ICT Group, Italy, Rome"^^xsd:string ;
+                                                                   
+                                                                   dct:created "2013-10-22" ;
+                                                                   
+                                                                   dct:modified "2013-10-22" ;
+                                                                   
+                                                                   owl:imports usdl-sec: .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://dublincore.org/2010/10/11/dcterms.rdf#description
+
+<http://dublincore.org/2010/10/11/dcterms.rdf#description> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#hasSecurityGoal
+
+usdl-sec:hasSecurityGoal rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#isImplementedBy
+
+usdl-sec:isImplementedBy rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#isRealizedByTechnology
+
+usdl-sec:isRealizedByTechnology rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#usesMechanism
+
+usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#3DES
+
+<http://www.compose-project.eu/ns/web-of-things/security/profiles#3DES> rdf:type owl:Class ;
+                                                                        
+                                                                        rdfs:subClassOf :DES .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES
+
+:AES rdf:type owl:Class ;
+     
+     rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES128bit
+
+:AES128bit rdf:type owl:Class ;
+           
+           rdfs:subClassOf :AES .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES256bit
+
+:AES256bit rdf:type owl:Class ;
+           
+           rdfs:subClassOf :AES .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#APIKey
+
+:APIKey rdf:type owl:Class ;
+        
+        rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AuthenticationTechnology
+
+:AuthenticationTechnology rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf :SecurityTechnology ;
+                          
+                          owl:disjointWith :CryptographicProtocol .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#CryptographicProtocol
+
+:CryptographicProtocol rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DES
+
+:DES rdf:type owl:Class ;
+     
+     rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DSA-SHA1
+
+:DSA-SHA1 rdf:type owl:Class ;
+          
+          rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HMAC-SHA1
+
+:HMAC-SHA1 rdf:type owl:Class ;
+           
+           rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPBasicAuth
+
+:HTTPBasicAuth rdf:type owl:Class ;
+               
+               rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPDigestAuth
+
+:HTTPDigestAuth rdf:type owl:Class ;
+                
+                rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth
+
+:OAuth rdf:type owl:Class ;
+       
+       rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth2
+
+:OAuth2 rdf:type owl:Class ;
+        
+        rdfs:subClassOf :OAuth .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OpenID
+
+:OpenID rdf:type owl:Class ;
+        
+        rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RSA
+
+:RSA rdf:type owl:Class ;
+     
+     rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RSA-MD5
+
+:RSA-MD5 rdf:type owl:Class ;
+         
+         rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RSA-SHA1
+
+:RSA-SHA1 rdf:type owl:Class ;
+          
+          rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML
+
+:SAML rdf:type owl:Class ;
+      
+      rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SSL
+
+:SSL rdf:type owl:Class ;
+     
+     rdfs:subClassOf :CryptographicProtocol .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SecurityTechnology
+
+:SecurityTechnology rdf:type owl:Class .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SessionID
+
+:SessionID rdf:type owl:Class ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TSL
+
+:TSL rdf:type owl:Class ;
+     
+     rdfs:subClassOf :CryptographicProtocol .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#X509
+
+:X509 rdf:type owl:Class ;
+      
+      rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#XACML
+
+:XACML rdf:type owl:Class ;
+       
+       rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Access_Control
+
+usdl-sec:Access_Control rdf:type owl:Class .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Cryptography
+
+usdl-sec:Cryptography rdf:type owl:Class .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#PasswordExchange
+
+usdl-sec:PasswordExchange rdf:type owl:Class .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Token
+
+usdl-sec:Token rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES
+
+:AES rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES128Bit
+
+:AES128Bit rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#APIKey
+
+:APIKey rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPBasicAuth
+
+:HTTPBasicAuth rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPDigestAuth
+
+:HTTPDigestAuth rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth
+
+:OAuth rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth2
+
+:OAuth2 rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OpenID
+
+:OpenID rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RSA
+
+:RSA rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SSL
+
+:SSL rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SessionID
+
+:SessionID rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TSL
+
+:TSL rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#XACML
+
+:XACML rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_accesscontrolOAuth
+
+:_accesscontrolOAuth rdf:type usdl-sec:Access_Control ,
+                              owl:NamedIndividual ;
+                     
+                     usdl-sec:isRealizedByTechnology :OAuth .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_accesscontrolOAuth2
+
+:_accesscontrolOAuth2 rdf:type usdl-sec:Access_Control ,
+                               owl:NamedIndividual ;
+                      
+                      usdl-sec:isRealizedByTechnology :OAuth2 .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_accesscontrolXACML
+
+:_accesscontrolXACML rdf:type usdl-sec:Access_Control ,
+                              owl:NamedIndividual ;
+                     
+                     usdl-sec:isRealizedByTechnology :XACML .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_password_HTTPBasicAuth
+
+:_authentication_password_HTTPBasicAuth rdf:type owl:NamedIndividual ;
+                                        
+                                        rdfs:label "Authentication - PasswordExchange - HTTP Basic Auth"@en ;
+                                        
+                                        <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authentication by HTTP Basic Auth"@en ;
+                                        
+                                        usdl-sec:isImplementedBy :_passwordExchangeHTTPBasicAuth ;
+                                        
+                                        usdl-sec:hasSecurityGoal usdl-sec:Authentication ,
+                                                                 usdl-sec:Identification .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_password_HTTPDigestAuth
+
+:_authentication_password_HTTPDigestAuth rdf:type owl:NamedIndividual ;
+                                         
+                                         rdfs:label "Authentication - PasswordExchange - HTTPDigestAuth"@en ;
+                                         
+                                         <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authentication by HTTP Digest Auth"@en ;
+                                         
+                                         usdl-sec:isImplementedBy :_passwordExchangeHTTPDigestAuth ;
+                                         
+                                         usdl-sec:hasSecurityGoal usdl-sec:Authentication ,
+                                                                  usdl-sec:Identification .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_apikey
+
+:_authentication_token_apikey rdf:type owl:NamedIndividual ;
+                              
+                              rdfs:label "Authentication - Token - API KEY"@en ;
+                              
+                              <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authentication by API KEY token"@en ;
+                              
+                              usdl-sec:isImplementedBy :_tokenAPIKEY ;
+                              
+                              usdl-sec:hasSecurityGoal usdl-sec:Authentication ,
+                                                       usdl-sec:Identification .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth
+
+:_authentication_token_oauth rdf:type owl:NamedIndividual ;
+                             
+                             rdfs:label "Authentication - Token - OAuth"@en ;
+                             
+                             <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authentication by OAuth token"@en ;
+                             
+                             usdl-sec:isImplementedBy :_tokenOAuth ;
+                             
+                             usdl-sec:hasSecurityGoal usdl-sec:Authentication ,
+                                                      usdl-sec:Identification .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth2
+
+:_authentication_token_oauth2 rdf:type owl:NamedIndividual ;
+                              
+                              rdfs:label "Authentication - Token - OAuth2"@en ;
+                              
+                              <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authentication by OAuth2 token"@en ;
+                              
+                              usdl-sec:isImplementedBy :_tokenOAuth2 ;
+                              
+                              usdl-sec:hasSecurityGoal usdl-sec:Authentication ,
+                                                       usdl-sec:Identification .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_openid
+
+:_authentication_token_openid rdf:type owl:NamedIndividual ;
+                              
+                              rdfs:label "Authentication - Token - OpenID"@en ;
+                              
+                              <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authentication by OpenID token"@en ;
+                              
+                              usdl-sec:isImplementedBy :_tokenOpenID ;
+                              
+                              usdl-sec:hasSecurityGoal usdl-sec:Authentication ,
+                                                       usdl-sec:Identification .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_sessionid
+
+:_authentication_token_sessionid rdf:type owl:NamedIndividual ;
+                                 
+                                 rdfs:label "Authentication - Token - SessionID"@en ;
+                                 
+                                 <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authentication by SessionID token"@en ;
+                                 
+                                 usdl-sec:isImplementedBy :_tokenSessionID ;
+                                 
+                                 usdl-sec:hasSecurityGoal usdl-sec:Authentication ,
+                                                          usdl-sec:Identification .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authorization_accesscontrol_oauth
+
+:_authorization_accesscontrol_oauth rdf:type owl:NamedIndividual ;
+                                    
+                                    rdfs:label "Authorization - AccessControl - OAuth"@en ;
+                                    
+                                    <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authorization by OAuth"@en ;
+                                    
+                                    usdl-sec:isImplementedBy :_accesscontrolOAuth ;
+                                    
+                                    usdl-sec:hasSecurityGoal usdl-sec:Authorization .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authorization_accesscontrol_oauth2
+
+:_authorization_accesscontrol_oauth2 rdf:type owl:NamedIndividual ;
+                                     
+                                     rdfs:label "Authorization - AccessControl - OAuth2"@en ;
+                                     
+                                     <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authorization by OAuth2"@en ;
+                                     
+                                     usdl-sec:isImplementedBy :_accesscontrolOAuth2 ;
+                                     
+                                     usdl-sec:hasSecurityGoal usdl-sec:Authorization .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authorization_accesscontrol_xacml
+
+:_authorization_accesscontrol_xacml rdf:type owl:NamedIndividual ;
+                                    
+                                    rdfs:label "Authorization - AccessControl - XACML"@en ;
+                                    
+                                    <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Authorization by XACML"@en ;
+                                    
+                                    usdl-sec:isImplementedBy :_accesscontrolXACML ;
+                                    
+                                    usdl-sec:hasSecurityGoal usdl-sec:Authorization .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionAES
+
+:_encryptionAES rdf:type usdl-sec:Cryptography ,
+                         owl:NamedIndividual ;
+                
+                usdl-sec:isRealizedByTechnology :AES ,
+                                                :AES128Bit .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionAES128Bit
+
+:_encryptionAES128Bit rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionRSA
+
+:_encryptionRSA rdf:type usdl-sec:Cryptography ,
+                         owl:NamedIndividual ;
+                
+                usdl-sec:isRealizedByTechnology :RSA .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionSSL
+
+:_encryptionSSL rdf:type usdl-sec:Cryptography ,
+                         owl:NamedIndividual ;
+                
+                usdl-sec:isRealizedByTechnology :SSL .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionTSL
+
+:_encryptionTSL rdf:type usdl-sec:Cryptography ,
+                         owl:NamedIndividual ;
+                
+                usdl-sec:isRealizedByTechnology :TSL .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_passwordExchangeHTTPBasicAuth
+
+:_passwordExchangeHTTPBasicAuth rdf:type usdl-sec:PasswordExchange ,
+                                         owl:NamedIndividual ;
+                                
+                                usdl-sec:isRealizedByTechnology :HTTPBasicAuth .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_passwordExchangeHTTPDigestAuth
+
+:_passwordExchangeHTTPDigestAuth rdf:type usdl-sec:PasswordExchange ,
+                                          owl:NamedIndividual ;
+                                 
+                                 usdl-sec:isRealizedByTechnology :HTTPDigestAuth .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentality_encryption_AES
+
+:_sa_confidentality_encryption_AES rdf:type owl:NamedIndividual ;
+                                   
+                                   rdfs:label "Confidentiality - Encryption - AES"@en ;
+                                   
+                                   <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Confidentiality of communication achieved by AES"@en ;
+                                   
+                                   usdl-sec:isImplementedBy :_encryptionAES ;
+                                   
+                                   usdl-sec:hasSecurityGoal usdl-sec:Confidentiality .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentality_encryption_AES128Bit
+
+:_sa_confidentality_encryption_AES128Bit rdf:type owl:NamedIndividual ;
+                                         
+                                         rdfs:label "Confidentiality - Encryption - AES128Bit"@en ;
+                                         
+                                         <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Confidentiality of communication achieved by AES128Bit"@en ;
+                                         
+                                         usdl-sec:isImplementedBy :_encryptionAES128Bit ;
+                                         
+                                         usdl-sec:hasSecurityGoal usdl-sec:Confidentiality .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentality_encryption_RSA
+
+:_sa_confidentality_encryption_RSA rdf:type owl:NamedIndividual ;
+                                   
+                                   rdfs:label "Confidentiality - Encryption - RSA"@en ;
+                                   
+                                   <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Confidentiality of communication achieved by RSA"@en ;
+                                   
+                                   usdl-sec:isImplementedBy :_encryptionRSA ;
+                                   
+                                   usdl-sec:hasSecurityGoal usdl-sec:Confidentiality .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentality_encryption_TSL
+
+:_sa_confidentality_encryption_TSL rdf:type owl:NamedIndividual ;
+                                   
+                                   rdfs:label "Confidentiality - Encryption - TSL"@en ;
+                                   
+                                   <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Confidentiality of communication achieved by TSL"@en ;
+                                   
+                                   usdl-sec:isImplementedBy :_encryptionTSL ;
+                                   
+                                   usdl-sec:hasSecurityGoal usdl-sec:Confidentiality .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentiality_encryption_SSL
+
+:_sa_confidentiality_encryption_SSL rdf:type owl:NamedIndividual ;
+                                    
+                                    rdfs:label "Confidentiality - Encryption - SSL"@en ;
+                                    
+                                    <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Confidentiality of communication achieved by SSL"@en ;
+                                    
+                                    usdl-sec:isImplementedBy :_encryptionSSL ;
+                                    
+                                    usdl-sec:hasSecurityGoal usdl-sec:Confidentiality .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_privacy_accesscontrol_xacml
+
+:_sa_privacy_accesscontrol_xacml rdf:type owl:NamedIndividual ;
+                                 
+                                 rdfs:label "Privacy - AccessControl - XACML"@en ;
+                                 
+                                 <http://dublincore.org/2010/10/11/dcterms.rdf#description> "Privacy achieved by XACML"@en ;
+                                 
+                                 usdl-sec:isImplementedBy :_accesscontrolXACML ;
+                                 
+                                 usdl-sec:hasSecurityGoal usdl-sec:Privacy .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenAPIKEY
+
+:_tokenAPIKEY rdf:type usdl-sec:Token ,
+                       owl:NamedIndividual ;
+              
+              usdl-sec:isRealizedByTechnology :APIKey .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenOAuth
+
+:_tokenOAuth rdf:type usdl-sec:Token ,
+                      owl:NamedIndividual ;
+             
+             usdl-sec:isRealizedByTechnology :OAuth .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenOAuth2
+
+:_tokenOAuth2 rdf:type usdl-sec:Token ,
+                       owl:NamedIndividual ;
+              
+              usdl-sec:isRealizedByTechnology :OAuth2 .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenOpenID
+
+:_tokenOpenID rdf:type usdl-sec:Token ,
+                       owl:NamedIndividual ;
+              
+              usdl-sec:isRealizedByTechnology :OpenID .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenSessionID
+
+:_tokenSessionID rdf:type usdl-sec:Token ,
+                          owl:NamedIndividual ;
+                 
+                 usdl-sec:isRealizedByTechnology :SessionID .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+

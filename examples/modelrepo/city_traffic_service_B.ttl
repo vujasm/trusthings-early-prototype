@@ -1,0 +1,60 @@
+@prefix hr:      <http://iserve.kmi.open.ac.uk/ns/hrests#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix wl:      <http://www.wsmo.org/ns/wsmo-lite#> .
+@prefix sawsdl:  <http://www.w3.org/ns/sawsdl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix msm:     <http://iserve.kmi.open.ac.uk/ns/msm#> .
+@prefix msm-wsdl:  <http://iserve.kmi.open.ac.uk/ns/msm-wsdl#> .
+@prefix dcterms:  <http://purl.org/dc/elements/1.1/> .
+@prefix trust:  <http://www.compose-project.eu/ns/web-of-things/trust#> .
+@prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
+
+<http://localhost/services/1.1/city_traffic_service_b.owls#_TRAFFICREPORT>
+      a       msm:MessagePart .
+
+<http://localhost/services/CITY_TRAFFIC_SERVICE_B>
+      a       msm:Service ;
+	  trust:hasTrustProfile <http://localhost/services/1.1/city_traffic_service_b.owls#TRUST_PROFILE> ;
+      msm:hasOperation <http://localhost/services/1.1/city_traffic_service_b.owls#CITY_TRAFFICREREPORT_PROCESS> .
+	  
+<http://localhost/services/1.1/city_traffic_service_b.owls#TRUST_PROFILE> 
+       a    trust:TrustProfile;  
+	  trust:hasAttribute <http://localhost/services/1.1/city_traffic_service_b.owls#NFP_SECURITY_AUTHENTICATION_OAUTH2> ;
+	  trust:hasAttribute <http://localhost/services/1.1/city_traffic_service_b.owls#NFP_SECURITY_REPUTATION> ;
+	  trust:hasAttribute <http://localhost/services/1.1/city_traffic_service_b.owls#NFP_SECURITY_quality> .
+
+	  	  
+<http://localhost/services/1.1/city_traffic_service_b.owls#NFP_SECURITY_AUTHENTICATION_APIKEY>
+		a   wl:NonfunctionalParameter , trust:SecurityCapability ;
+		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_apikey"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
+		
+<http://localhost/services/1.1/city_traffic_service_b.owls#NFP_SECURITY_AUTHENTICATION_OAUTH2>
+		a   wl:NonfunctionalParameter , trust:SecurityCapability ;
+		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth2"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
+
+<http://localhost/services/1.1/city_traffic_service_b.owls#NFP_SECURITY_REPUTATION>
+		a   wl:NonfunctionalParameter , trust:Reputation ;
+		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/trust#high"^^<http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale> .
+		
+<http://localhost/services/1.1/city_traffic_service_b.owls#NFP_SECURITY_quality>
+		a   wl:NonfunctionalParameter , trust:QoSAttribute ;
+		trust:hasValue "0.4"^^<http://www.w3.org/2001/XMLSchema#double> .
+	  
+<http://localhost/services/1.1/city_traffic_service_b.owls#CITY_TRAFFICREREPORT_PROCESS>
+      a       msm:Operation ;
+      msm:hasInput <http://localhost/services/1.1/city_traffic_service_b.owls#CITY_TRAFFICREREPORT_PROCESS_Input> ;
+      msm:hasOutput <http://localhost/services/1.1/city_traffic_service_b.owls#CITY_TRAFFICREREPORT_PROCESS_Output> .
+
+<http://localhost/services/1.1/city_traffic_service_b.owls#_CITY>
+      a       msm:MessagePart .
+
+<http://localhost/services/1.1/city_traffic_service_b.owls#CITY_TRAFFICREREPORT_PROCESS_Input>
+      a       msm:MessageContent , msm:MessagePart ;
+      msm:hasMandatoryPart
+              <http://localhost/services/1.1/city_traffic_service_b.owls#_CITY> .
+
+			  <http://localhost/services/1.1/city_traffic_service_b.owls#CITY_TRAFFICREREPORT_PROCESS_Output>
+      a       msm:MessageContent , msm:MessagePart ;
+      msm:hasMandatoryPart
+              <http://localhost/services/1.1/city_traffic_service_b.owls#_TRAFFICREPORT> .
