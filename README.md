@@ -1,2 +1,2 @@
-trusthings
+Trusthings engine
 ==========
