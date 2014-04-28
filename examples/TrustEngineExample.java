@@ -48,6 +48,7 @@ public class TrustEngineExample {
 			URI service_d = URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_D");
 			InputStream r1is = TrustEngineExample.class.getResourceAsStream("/modelrepo/city_traffic_service_A.ttl");
 			trustManager.addResourceDescription(service_a,r1is);
+			r1is.close();
 			InputStream r2is = TrustEngineExample.class.getResourceAsStream("/modelrepo/city_traffic_service_B.ttl");
 			trustManager.addResourceDescription(service_b, r2is);
 			r2is.close();
