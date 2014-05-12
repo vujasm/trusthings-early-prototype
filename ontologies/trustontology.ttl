@@ -245,12 +245,12 @@
                            owl:someValuesFrom :TrustCriteria
                          ] ,
                          [ rdf:type owl:Restriction ;
-                           owl:onProperty :suggestedMatcher ;
-                           owl:someValuesFrom :Matcher
-                         ] ,
-                         [ rdf:type owl:Restriction ;
                            owl:onProperty :hasName ;
                            owl:someValuesFrom xsd:string
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :suggestedMatcher ;
+                           owl:someValuesFrom :Matcher
                          ] ;
          
          rdfs:comment """A context within a trust relationship is being or to be established. E.g. public transport, tourism,  retail. For each context, there can be a recommended req trust profile(s) provided, in general, or agent can have req trust profile defined for the context.
@@ -269,16 +269,6 @@
                     rdfs:subClassOf :Reputation ;
                     
                     rdfs:comment "Contract Compliance can be a measure of compliance of actual behaviour of a service with respect to the service contract. This informatin may be comming out from COMPOSE Activity Monitors"@en .
-
-
-
-###  http://www.compose-project.eu/ns/web-of-things/trust#Feedback
-
-:Feedback rdf:type owl:Class ;
-          
-          rdfs:subClassOf :Reputation ;
-          
-          rdfs:comment "Feedback from agents about other agents. E.g. user feedback about some particular service. Feedback can be in  a form of rating with predefined rating scale (e.g. poor, fair, good, very good, excellent)"@en .
 
 
 
@@ -305,7 +295,7 @@
                           
                           rdfs:subClassOf :TrustAttribute ,
                                           [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasMinValue ;
+                                            owl:onProperty :hasMaxValue ;
                                             owl:someValuesFrom rdf:PlainLiteral
                                           ] ,
                                           [ rdf:type owl:Restriction ;
@@ -317,7 +307,7 @@
                                             owl:someValuesFrom :Metric
                                           ] ,
                                           [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasMaxValue ;
+                                            owl:onProperty :hasMinValue ;
                                             owl:someValuesFrom rdf:PlainLiteral
                                           ] .
 
@@ -379,6 +369,16 @@
               rdfs:subClassOf :MeasurableTrustAttribute ;
               
               rdfs:comment "Any attribute about quality of service."@en .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Rating
+
+:Rating rdf:type owl:Class ;
+        
+        rdfs:subClassOf :Reputation ;
+        
+        rdfs:comment "Feedback from agents about other agents. E.g. user feedback about some particular service. Feedback can be in  a form of rating with predefined rating scale (e.g. poor, fair, good, very good, excellent)"@en .
 
 
 
@@ -485,16 +485,8 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
                    rdfs:label "TrustRelationship"@en ;
                    
                    rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasTimestamp ;
-                                     owl:someValuesFrom xsd:dateTimeStamp
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
                                      owl:onProperty :trustingParticipant ;
                                      owl:someValuesFrom :Agent
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :forContext ;
-                                     owl:someValuesFrom :Context
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasScore ;
@@ -507,6 +499,14 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :trustedParticipant ;
                                      owl:someValuesFrom :Agent
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTimestamp ;
+                                     owl:someValuesFrom xsd:dateTimeStamp
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :forContext ;
+                                     owl:someValuesFrom :Context
                                    ] ;
                    
                    rdfs:comment "TrustRelationship represents trust relationship as a 6-tuple <Trusted Agent, Trusting Agent, Context, TrustCriteria, Score, Timestamp>. Each trust relationship is established between two agents who wants to engange in some form of communication or cooperation within a certian context (e.g. buying or seeling goods, geting some information, etc). An trusting agent trusts that trusted agent has certian characteristics (or features), which are defined as a trust criteria by the trusting agent. TrustRelationship has a level of trust, which can be numerical value within a range e.g. [0..1]."@en ;
@@ -536,6 +536,19 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 #################################################################
 
 
+###  http://www.compose-project.eu/ns/web-of-things/trust#RatingScale
+
+:RatingScale rdf:type :Metric ,
+                      owl:NamedIndividual ;
+             
+             :hasMetricValue :fiveStar ,
+                             :fourStar ,
+                             :oneStar ,
+                             :threeStar ,
+                             :twoStar .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale
 
 :ReputationScale rdf:type :Metric ,
@@ -544,6 +557,26 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
                  :hasMetricValue :high ,
                                  :low ,
                                  :medium .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#fiveStar
+
+:fiveStar rdf:type :MetricValue ,
+                   owl:NamedIndividual ;
+          
+          :rank "5"^^xsd:int .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#fourStar
+
+:fourStar rdf:type :MetricValue ,
+                   owl:NamedIndividual ;
+          
+          :rank "4"^^xsd:int ;
+          
+          :next :fiveStar .
 
 
 
@@ -575,6 +608,39 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
         :rank "2"^^xsd:int ;
         
         :next :high .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#oneStar
+
+:oneStar rdf:type :MetricValue ,
+                  owl:NamedIndividual ;
+         
+         :rank "1"^^xsd:int ;
+         
+         :next :twoStar .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#threeStar
+
+:threeStar rdf:type :MetricValue ,
+                    owl:NamedIndividual ;
+           
+           :rank "3"^^xsd:int ;
+           
+           :next :fourStar .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#twoStar
+
+:twoStar rdf:type :MetricValue ,
+                  owl:NamedIndividual ;
+         
+         :rank "2"^^xsd:int ;
+         
+         :next :threeStar .
 
 
 
