@@ -1,0 +1,26 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix wl:      <http://www.wsmo.org/ns/wsmo-lite#> .
+@prefix sawsdl:  <http://www.w3.org/ns/sawsdl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix msm:     <http://iserve.kmi.open.ac.uk/ns/msm#> .
+@prefix dcterms:  <http://purl.org/dc/elements/1.1/> .
+@prefix trust:  <http://www.compose-project.eu/ns/web-of-things/trust#> .
+@prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
+
+<http://localhost/services/Wind_Sensor_B> 
+      a       msm:Service , trust:Agent;
+	  trust:hasProfile <http://localhost/services/Wind_Sensor_B#TRUST_PROFILE>.
+
+<http://localhost/services/Wind_Sensor_B#TRUST_PROFILE> 
+       a    trust:TrustProfile;
+	  trust:hasAttribute <http://localhost/services/Wind_Sensor_B#NFP_SecurityGuarantee_1> ;
+	  trust:hasAttribute <http://localhost/services/Wind_Sensor_B#NFP_REPUTATION> .
+		
+<http://localhost/services/Wind_Sensor_B#NFP_SecurityGuarantee_1>
+		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;
+		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
+
+<http://localhost/services/Wind_Sensor_B#NFP_REPUTATION>
+		a   wl:NonfunctionalParameter , trust:Reputation ;
+		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/trust#high"^^<http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale> .

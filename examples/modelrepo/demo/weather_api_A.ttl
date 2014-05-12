@@ -1,0 +1,31 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix wl:      <http://www.wsmo.org/ns/wsmo-lite#> .
+@prefix sawsdl:  <http://www.w3.org/ns/sawsdl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix msm:     <http://iserve.kmi.open.ac.uk/ns/msm#> .
+@prefix dcterms:  <http://purl.org/dc/elements/1.1/> .
+@prefix trust:  <http://www.compose-project.eu/ns/web-of-things/trust#> .
+@prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
+
+<http://localhost/services/Weather_API_A>
+      a       msm:Service ;
+	  trust:hasProfile <http://localhost/services/Weather_API_A#TRUST_PROFILE>.
+
+<http://localhost/services/Weather_API_A#TRUST_PROFILE> 
+       a    trust:TrustProfile;
+	  trust:hasAttribute <http://localhost/services/Weather_API_A#NFP_SecurityGuarantee_1> ;
+	  trust:hasAttribute <http://localhost/services/Weather_API_A#NFP_RATING> ;
+	  trust:hasAttribute <http://localhost/services/Weather_API_A#NFP_AVAILABILITY> .
+		
+<http://localhost/services/Weather_API_A#NFP_SecurityGuarantee_1>
+		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;
+		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth2"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
+
+<http://localhost/services/Weather_API_A#NFP_RATING>
+		a   wl:NonfunctionalParameter , trust:Rating ;
+		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/trust#fourStar"^^<http://www.compose-project.eu/ns/web-of-things/trust#RatingScale> .
+		
+<http://localhost/services/Weather_API_A#NFP_AVAILABILITY>
+		a   wl:NonfunctionalParameter , trust:Availability ;
+		trust:hasValue "0.8"^^<http://www.w3.org/2001/XMLSchema#double> .

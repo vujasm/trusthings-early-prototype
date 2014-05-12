@@ -1,0 +1,6 @@
+{
+"attributes": [ 
+{"type":[{"uri":"http://www.compose-project.eu/ns/web-of-things/trust#Rating"}],"importance":1.0,"value":"http://www.compose-project.eu/ns/web-of-things/trust#threeStar","minValue":null,"maxValue":null},
+{"type":[{"uri":"http://www.compose-project.eu/ns/web-of-things/trust#Availability"}],"importance":1.0,"value":"0.0","minValue":null,"maxValue":null}
+]
+}
